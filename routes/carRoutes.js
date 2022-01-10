@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import { registerMetrics } from '../controllers/carControllers.js'
+import { getMetrics, registerMetrics } from '../controllers/carControllers.js'
 
 /**
  * @method - POST
@@ -9,5 +9,13 @@ import { registerMetrics } from '../controllers/carControllers.js'
  * @type - Public
  */
 router.post('/reg', registerMetrics)
+
+/**
+ * @method - GET
+ * @parameter - /api/metrics/cars
+ * @description - retrieves all list of cars registered
+ * @type - Public
+ */
+router.get('/cars', getMetrics)
 
 export default router

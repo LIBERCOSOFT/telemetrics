@@ -26,7 +26,7 @@ const registerMetrics = asyncHandler(async (req, res) => {
 
   if (carExists) {
     res.status(400)
-    throw new Error('Car already registered, Updates can only be done!')
+    throw new Error('car already registered, updates can only be done!')
   }
 
   const newCar = new CarModel({
@@ -57,4 +57,25 @@ const registerMetrics = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerMetrics }
+/**
+ * @method - GET
+ * @description - get list of all car's telemetrics
+ * @route - /api/metrics/cars
+ * @access - public
+ */
+const getMetrics = asyncHandler(async (req, res) => {
+  try {
+    const cars = await CarModel.find({})
+    if (cars) {
+      res.json(cars)
+    } else {
+      res.status(404)
+      throw new Error('no cars found!')
+    }
+  } catch (err) {
+    res.status(400)
+    throw new Error(err.message)
+  }
+})
+
+export { registerMetrics, getMetrics }
