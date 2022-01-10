@@ -9,7 +9,7 @@ const port = process.env.PORT || 8008
 const app = express()
 
 import InitiateMongoServer from './config/db.js'
-// import userRoutes from './routes/userRoutes.js'
+import carRoutes from './routes/carRoutes.js'
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 
 app.use(helmet())
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Server Started!!')
 })
 
-// app.use('/api/user', userRoutes)
+app.use('/api/metrics', carRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
