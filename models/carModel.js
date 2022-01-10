@@ -2,27 +2,27 @@ import mongoose from 'mongoose'
 
 const carSchema = mongoose.Schema(
   {
-    carOwner: {
+    owner: {
       type: String,
       required: true,
     },
-    carName: {
+    name: {
       type: String,
       required: true,
     },
-    carLicenseNumber: {
+    licenseNumber: {
       type: String,
       required: true,
     },
-    carModel: {
+    model: {
       type: String,
       required: true,
     },
-    carTelemetrics: {
-      engineTemperature: { type: Number },
-      carSpeed: { type: Number },
-      carLongitude: { type: Number },
-      carLatitude: { type: Number },
+    telemetrics: {
+      engineTemp: { type: Number },
+      speed: { type: Number },
+      longitude: { type: Number },
+      latitude: { type: Number },
       fuelConsumption: { type: Number },
       brakeOilLevel: { type: Number },
       sharpAcceleration: { type: Number },

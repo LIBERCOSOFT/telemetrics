@@ -9,19 +9,19 @@ import CarModel from '../models/carModel.js'
  */
 
 const registerMetrics = asyncHandler(async (req, res) => {
-  const { carOwner, carName, carLicenseNumber, carModel } = req.body
+  const { owner, name, licenseNumber, model } = req.body
   const {
-    engineTemperature,
-    carSpeed,
-    carLongitude,
-    carLatitude,
+    engineTemp,
+    speed,
+    longitude,
+    latitude,
     fuelConsumption,
     brakeOilLevel,
     sharpAcceleration,
-  } = req.body.carTelemetrics
+  } = req.body.telemetrics
 
   let carExists = await CarModel.findOne({
-    carLicenseNumber,
+    licenseNumber,
   })
 
   if (carExists) {
@@ -30,15 +30,15 @@ const registerMetrics = asyncHandler(async (req, res) => {
   }
 
   const newCar = new CarModel({
-    carOwner,
-    carName,
-    carLicenseNumber,
-    carModel,
-    carTelemetrics: {
-      engineTemperature,
-      carSpeed,
-      carLongitude,
-      carLatitude,
+    owner,
+    name,
+    licenseNumber,
+    model,
+    telemetrics: {
+      engineTemp,
+      speed,
+      longitude,
+      latitude,
       fuelConsumption,
       brakeOilLevel,
       sharpAcceleration,
@@ -78,4 +78,51 @@ const getMetrics = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerMetrics, getMetrics }
+/**
+ * @method - PUT
+ * @description - update the telemetrics or details of a car
+ * @route - /api/metrics/edit
+ * @access - public
+ */
+const updateMetrics = asyncHandler(async (req, res) => {
+  const { owner, name, licenseNumber, model } = req.body
+  const {
+    engineTemp,
+    speed,
+    longitude,
+    latitude,
+    fuelConsumption,
+    brakeOilLevel,
+    sharpAcceleration,
+  } = req.body.telemetrics
+
+  const car = await CarModel.findById(req.query.id)
+
+  if (car) {
+    car.owner = owner || car.owner
+    car.name = name || car.name
+    car.licenseNumber = licenseNumber || car.licenseNumber
+    car.model = model || car.model
+    car.telemetrics.engineTemperature = engineTemp || car.telemetrics.engineTemp
+    car.telemetrics.speed = speed || car.telemetrics.speed
+    car.telemetrics.longitude = longitude || car.telemetrics.longitude
+    car.telemetrics.latitude = latitude || car.telemetrics.latitude
+    car.telemetrics.fuelConsumption =
+      fuelConsumption || car.telemetrics.fuelConsumption
+    car.telemetrics.brakeOilLevel =
+      brakeOilLevel || car.telemetrics.brakeOilLevel
+    car.telemetrics.sharpAcceleration =
+      sharpAcceleration || car.telemetrics.sharpAcceleration
+
+    const updatedCar = await car.save()
+
+    res.json({
+      updatedCar,
+    })
+  } else {
+    res.status(404)
+    throw new Error('car not found!')
+  }
+})
+
+export { registerMetrics, getMetrics, updateMetrics }
