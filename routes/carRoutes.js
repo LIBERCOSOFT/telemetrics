@@ -1,6 +1,7 @@
 import express from 'express'
 const router = express.Router()
 import {
+  deleteMetrics,
   getMetrics,
   registerMetrics,
   updateMetrics,
@@ -29,5 +30,13 @@ router.get('/cars', getMetrics)
  * @type - Public
  */
 router.put('/edit', updateMetrics)
+
+/**
+ * @method - DELETE
+ * @parameter - /api/metrics/remove
+ * @description - deletes the details of a registered car
+ * @type - Public
+ */
+router.delete('/remove', deleteMetrics)
 
 export default router

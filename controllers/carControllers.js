@@ -125,4 +125,22 @@ const updateMetrics = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerMetrics, getMetrics, updateMetrics }
+/**
+ * @method - DELETE
+ * @description - deletes a car's telemetrics and detials
+ * @route - /api/metrics/remove
+ * @access - public
+ */
+const deleteMetrics = asyncHandler(async (req, res) => {
+  const car = await CarModel.findById(req.query.id)
+
+  if (car) {
+    await car.remove()
+    res.json({ message: 'car telemetrics removed' })
+  } else {
+    res.status(404)
+    throw new Error('car not found!!')
+  }
+})
+
+export { registerMetrics, getMetrics, updateMetrics, deleteMetrics }
