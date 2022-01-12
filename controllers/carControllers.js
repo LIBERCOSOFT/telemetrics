@@ -116,7 +116,7 @@ const updateMetrics = asyncHandler(async (req, res) => {
 
     const updatedCar = await car.save()
 
-    res.json({
+    res.status(204).json({
       updatedCar,
     })
   } else {
@@ -136,7 +136,7 @@ const deleteMetrics = asyncHandler(async (req, res) => {
 
   if (car) {
     await car.remove()
-    res.json({ message: 'car telemetrics removed' })
+    res.status(200).json({ message: 'car telemetrics removed' })
   } else {
     res.status(404)
     throw new Error('car not found!!')
