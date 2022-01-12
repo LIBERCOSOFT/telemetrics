@@ -67,7 +67,7 @@ const getMetrics = asyncHandler(async (req, res) => {
   try {
     const cars = await CarModel.find({})
     if (cars) {
-      res.json(cars)
+      res.status(200).json(cars)
     } else {
       res.status(404)
       throw new Error('no cars found!')
