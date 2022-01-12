@@ -3,7 +3,7 @@ import CarModel from '../models/carModel.js'
 
 /**
  * @method - POST
- * @description - register a new car's telemetrics
+ * @description - register a new car's data
  * @route - /api/metrics/reg
  * @access - public
  */
@@ -59,7 +59,7 @@ const registerMetrics = asyncHandler(async (req, res) => {
 
 /**
  * @method - GET
- * @description - get list of all car's telemetrics
+ * @description - get list of all cars
  * @route - /api/metrics/cars
  * @access - public
  */
@@ -80,7 +80,7 @@ const getMetrics = asyncHandler(async (req, res) => {
 
 /**
  * @method - PUT
- * @description - update the telemetrics or details of a car
+ * @description - update the data of a car
  * @route - /api/metrics/edit
  * @access - public
  */
@@ -116,7 +116,7 @@ const updateMetrics = asyncHandler(async (req, res) => {
 
     const updatedCar = await car.save()
 
-    res.status(204).json({
+    res.status(200).json({
       updatedCar,
     })
   } else {
@@ -127,7 +127,7 @@ const updateMetrics = asyncHandler(async (req, res) => {
 
 /**
  * @method - DELETE
- * @description - deletes a car's telemetrics and detials
+ * @description - deletes a car's data
  * @route - /api/metrics/remove
  * @access - public
  */

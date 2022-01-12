@@ -10,7 +10,7 @@ import {
 /**
  * @method - POST
  * @parameter - /api/metrics/reg
- * @description - register a car's telemetrics
+ * @description - register a car's data
  * @type - Public
  */
 router.post('/reg', registerMetrics)
@@ -26,7 +26,7 @@ router.get('/cars', getMetrics)
 /**
  * @method - PUT
  * @parameter - /api/metrics/edit
- * @description - edit details of a registered car
+ * @description - edit data of a registered car
  * @type - Public
  */
 router.put('/edit', updateMetrics)
@@ -34,7 +34,7 @@ router.put('/edit', updateMetrics)
 /**
  * @method - DELETE
  * @parameter - /api/metrics/remove
- * @description - deletes the details of a registered car
+ * @description - deletes the data of a registered car
  * @type - Public
  */
 router.delete('/remove', deleteMetrics)

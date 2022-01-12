@@ -1,11 +1,11 @@
 # FixBot CRUD Operation Test
 
-> a backend server that creates, updates, read and delete car's telemetrics, built with nodeJS, expressJS, mongodb and mongoose.
+> a backend server that creates, updates, read and delete car's data which include telemetrics, owner, license number, model etc. Built with nodeJS, expressJS, mongodb and mongoose.
 
-- registers a new car with its telemetrics
-- displays all the registered cars with it's telemetrics in the database
-- updates the car's telemetrics and data in the database
-- deletes a specified car's data and telemetrics
+- registers a new car with its data
+- displays all the registered cars with it's data in the database
+- updates the car's data in the database
+- deletes a specified car's data 
 
 
 ## Usage
